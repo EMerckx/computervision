@@ -26,3 +26,8 @@
 *.exe
 *.out
 *.app
+
+# compiled
+build/
+dist/
+old/

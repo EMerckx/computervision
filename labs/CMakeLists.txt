@@ -1,0 +1,8 @@
+include_directories(${CMAKE_SOURCE_DIR}/controllers)
+
+add_subdirectory(ex_01)
+add_subdirectory(ex_02)
+add_subdirectory(ex_03)
+add_subdirectory(ex_04)
+add_subdirectory(ex_05)
+add_subdirectory(ex_06)
