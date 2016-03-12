@@ -25,33 +25,39 @@ int main( int argc, char** argv )
         return -1;
     }
 
-    // create matrix
-    Mat matrix;
-    int dim = 15;
-    matrix = Mat::zeros(dim, dim, CV_64F);
+    // create kernel
+    int erosion_type = MORPH_CROSS; // MORPH_RECT, MORPH_CROSS, MORPH_ELLIPSE
+    Mat element1 = getStructuringElement( erosion_type, Size(8,8) );
 
-    // first 7 diagonal elements have the value 1/7
-    for(int i=0; i<7; i++){
-        matrix.Mat::at<double>(i,i) = 1.0/7.0;
-    }
+    // create erosion image
+    Mat image_erosion;
+    erode(image, image_erosion, element1);
 
-    // apply filter2D
-    Mat image_filter2D;
-    filter2D(image, image_filter2D, -1, matrix, Point(matrix.cols - 1,matrix.rows - 1), 0, BORDER_DEFAULT);
+    // create kernel2
+    int dilatation_type = MORPH_RECT; // MORPH_RECT, MORPH_CROSS, MORPH_ELLIPSE
+    Mat element2 = getStructuringElement( dilatation_type, Size(1,25) );
 
-    //void filter2D(InputArray src, OutputArray dst, int ddepth, InputArray kernel, Point anchor=Point(-1,-1), double delta=0, int borderType=BORDER_DEFAULT )
-
+    // create dilatation image
+    Mat image_dilatation;
+    dilate( image_erosion, image_dilatation, element2 );
+    
     // show the original image
     string windowName1 = "Original image";
     namedWindow( windowName1, WINDOW_AUTOSIZE );
     imshow( windowName1, image );
     moveWindow( windowName1, 0, 0);
 
-    // show the gray image
-    string windowName2 = "Filter2D image";
+    // show the erosion image
+    string windowName2 = "Erosion image";
     namedWindow( windowName2, WINDOW_AUTOSIZE );
-    imshow( windowName2, image_filter2D );
+    imshow( windowName2, image_erosion );
     moveWindow( windowName2, image.size().width, 0);
+
+    // show the dilatation image
+    string windowName3 = "Dilatation image";
+    namedWindow( windowName3, WINDOW_AUTOSIZE );
+    imshow( windowName3, image_dilatation );
+    moveWindow( windowName3, 2*image.size().width, 0);
 
 
     waitKey(0);                                          // Wait for a keystroke in the window

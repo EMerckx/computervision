@@ -6,8 +6,6 @@
 using namespace cv;
 using namespace std;
 
-int MAX_KERNEL_LENGTH = 60;
-
 int main( int argc, char** argv )
 {
     if( argc != 2)
@@ -27,23 +25,38 @@ int main( int argc, char** argv )
         return -1;
     }
 
-    // apply the gausian blur
-    Mat image_gauss;
-    for ( int i = 1; i < MAX_KERNEL_LENGTH; i = i + 2 ){ 
-        GaussianBlur( image, image_gauss, Size( i, i ), 0, 0 );
+    // create matrix
+    Mat matrix;
+    int rows = 2;
+    int cols = 3;
+    matrix = Mat::zeros(rows, cols, CV_64F);
+    
+    for(int i=0; i<rows; i++){
+        matrix.Mat::at<double>(i,i) = 1;
     }
+
+    double m = -0.125;
+    matrix.Mat::at<double>(0,1) = m;
+
+    // shear transformation
+    Mat image_affine;
+    warpAffine( image, image_affine, matrix, image.size() );
+
+
 
     // show the original image
     string windowName1 = "Original image";
-    namedWindow( windowName1, WINDOW_AUTOSIZE );    // Create a window for display.
-    imshow( windowName1, image );                   // Show our image inside it.
-    moveWindow( windowName1, 0, 0);                 // Move our window
+    namedWindow( windowName1, WINDOW_AUTOSIZE );
+    imshow( windowName1, image );
+    moveWindow( windowName1, 0, 0);
 
-    // show the blurred image
-    string windowName2 = "Gaussian blurred image";
+    // show the warp affine image
+    string windowName2 = "Warp affine image";
     namedWindow( windowName2, WINDOW_AUTOSIZE );
-    imshow( windowName2, image_gauss );
+    imshow( windowName2, image_affine );
     moveWindow( windowName2, image.size().width, 0);
+
+
 
     waitKey(0);                                          // Wait for a keystroke in the window
     return 0;

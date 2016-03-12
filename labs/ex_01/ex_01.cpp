@@ -28,9 +28,18 @@ int main( int argc, char** argv )
 
     Mat tres_image;
     threshold( gray_image, tres_image, 127, 0, CV_THRESH_TRUNC );
+    
+    // show the original image
+    string windowName1 = "Original image";
+    namedWindow( windowName1, WINDOW_AUTOSIZE );    // Create a window for display.
+    imshow( windowName1, image );                   // Show our image inside it.
+    moveWindow( windowName1, 0, 0);                 // Move our window
 
-    namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
-    imshow( "Display window", tres_image );                   // Show our image inside it.
+    // show the original image
+    string windowName2 = "Treshold image";
+    namedWindow( windowName2, WINDOW_AUTOSIZE );
+    imshow( windowName2, tres_image );
+    moveWindow( windowName2, image.size().width, 0);
 
     // write images
     imwrite( "1_gray_image.png", gray_image );

@@ -42,12 +42,16 @@ int main( int argc, char** argv )
     addWeighted(image, 1.5, image_unsharp_masked, -0.5, 0, image_unsharp_masked);
 
     // show the original image
-    namedWindow( "Original image", WINDOW_AUTOSIZE );
-    imshow( "Original image", image );
+    string windowName1 = "Original image";
+    namedWindow( windowName1, WINDOW_AUTOSIZE );    // Create a window for display.
+    imshow( windowName1, image );                   // Show our image inside it.
+    moveWindow( windowName1, 0, 0);                 // Move our window
 
     // show the blurred image
-    namedWindow( "Unsharp masked image", WINDOW_AUTOSIZE );
-    imshow( "Unsharp masked image", image_unsharp_masked );
+    string windowName2 = "Unsharp masked image";
+    namedWindow( windowName2, WINDOW_AUTOSIZE );
+    imshow( windowName2, image_unsharp_masked );
+    moveWindow( windowName2, image.size().width, 0);
 
     waitKey(0);                                          // Wait for a keystroke in the window
     return 0;
