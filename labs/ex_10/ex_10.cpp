@@ -29,12 +29,18 @@ int main( int argc, char** argv )
 
     //-----------------------------------------------------------------------------------
 
+    Mat mykernel;
+
     // get the gaussian kernel
     int ksize = 35;
     double sigma = 5.6;
-    Mat kernel = getGaussianKernel(ksize,sigma,CV_32F);
+    mykernel = getGaussianKernel(ksize,sigma,CV_32F);
 
     // copy the middle column
+    Mat square = Mat::zeros(ksize, ksize, CV_32F);
+    Mat middle = square.col(ksize/2);
+    mykernel.col(0).copyTo(middle);
+    
 
     //-----------------------------------------------------------------------------------
 
