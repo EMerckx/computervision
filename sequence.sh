@@ -9,3 +9,4 @@
 ./dist/ex_07.out ./img/rainbowdiscs.png
 ./dist/ex_08.out ./img/shadow.png
 ./dist/ex_09.out ./img/shadow.png
+./dist/ex_10.out ./img/rays.png
