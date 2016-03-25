@@ -1,3 +1,5 @@
+// see: http://docs.opencv.org/3.0-rc1/d2/d2c/tutorial_sobel_derivatives.html
+
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
@@ -30,9 +32,24 @@ int main( int argc, char** argv )
     cvtColor( image, image_grayscale, CV_BGR2GRAY );
 
     // apply Sobel
-    Mat image_sobel;
+    //Mat image_sobel;
+    //Sobel(image_grayscale, image_sobel, -1, 1, 0, 3);
+
     Mat image_sobel_x, image_sobel_y;
-    Sobel(image_grayscale, image_sobel, CV_32F, 1, 0, 3);
+    Sobel( image_grayscale, image_sobel_x, CV_32F, 1, 0, 3);
+    Sobel( image_grayscale, image_sobel_y, CV_32F, 0, 1, 3);
+
+    // the negative values were not shown, 
+    // so we need to calculate the absolute values of each element
+    Mat image_sobel_x_abs, image_sobel_y_abs;
+    convertScaleAbs( image_sobel_x, image_sobel_x_abs );
+    convertScaleAbs( image_sobel_y, image_sobel_y_abs );
+
+    // add the x and y images to the global image
+    Mat image_sobel;
+    addWeighted( image_sobel_x_abs, 0.5, image_sobel_y_abs, 0.5, 0, image_sobel );
+
+    //-----------------------------------------------------------------------------------
 
     // show the original image
     string windowName1 = "Original image";

@@ -29,6 +29,15 @@ int main( int argc, char** argv )
 
     //-----------------------------------------------------------------------------------
 
+    // get the gaussian kernel
+    int ksize = 35;
+    double sigma = 5.6;
+    Mat kernel = getGaussianKernel(ksize,sigma,CV_32F);
+
+    // copy the middle column
+
+    //-----------------------------------------------------------------------------------
+
     // show the original image
     string windowName1 = "Original image";
     namedWindow( windowName1, WINDOW_AUTOSIZE );
