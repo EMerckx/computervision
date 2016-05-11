@@ -6,4 +6,4 @@ make -j4
 cd ..
 
 # run exercise
-./dist/ex_10.out ./img/rays.png
+./dist/ex_11.out ./img/rays.png
