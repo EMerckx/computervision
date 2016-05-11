@@ -25,6 +25,8 @@ int main( int argc, char** argv )
         return -1;
     }
 
+    //-----------------------------------------------------------------------------------
+
     // create matrix
     Mat matrix;
     int rows = 2;
@@ -42,7 +44,7 @@ int main( int argc, char** argv )
     Mat image_affine;
     warpAffine( image, image_affine, matrix, image.size() );
 
-
+    //-----------------------------------------------------------------------------------
 
     // show the original image
     string windowName1 = "Original image";
@@ -56,8 +58,9 @@ int main( int argc, char** argv )
     imshow( windowName2, image_affine );
     moveWindow( windowName2, image.size().width, 0);
 
+    //-----------------------------------------------------------------------------------
 
-
-    waitKey(0);                                          // Wait for a keystroke in the window
+    // Wait for a keystroke in the window
+    waitKey(0);
     return 0;
 }
