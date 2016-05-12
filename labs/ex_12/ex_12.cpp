@@ -1,5 +1,3 @@
-// see: http://docs.opencv.org/2.4/modules/imgproc/doc/feature_detection.html
-
 #include <iostream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
