@@ -13,3 +13,7 @@ In Linux, you can use the following commands.
 # run every exercise in a sequence
 ./run.sh
 ```
+
+## Tags
+
+UGent, Ghent University, Universiteit Gent, Schoonmeersen, HoGent, tiwi, computervision, computervisie, beeldverwerking, opencv, c++, information engineering technology, industriële wetenschappen: informatica, industrieel ingenieur informatica, iii
