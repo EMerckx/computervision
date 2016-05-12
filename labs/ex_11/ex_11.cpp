@@ -10,20 +10,20 @@ using namespace std;
 
 int main( int argc, char** argv )
 {
-    if( argc != 2)
+    if( argc != 2 )
     {
-        cout <<" Usage: display_image ImageToLoadAndDisplay" << endl;
+        cout << "Usage: ex_11.out image" << endl;
         return -1;
     }
 
     // read the image
     Mat image;
-    image = imread(argv[1], CV_LOAD_IMAGE_COLOR); 
+    image = imread(argv[1], CV_LOAD_IMAGE_COLOR ); 
 
     // check for errors
     if(! image.data )
     {
-        cout <<  "Could not open or find the image" << std::endl ;
+        cout <<  "Could not open or find the image" << endl;
         return -1;
     }
 
@@ -32,7 +32,7 @@ int main( int argc, char** argv )
     // STEP 1: find the edges in the image using the Canny algorithm
     // void Canny(InputArray image, OutputArray edges, double threshold1, double threshold2)
     Mat cannyEdges;
-    Canny(image, cannyEdges, 15, 10);
+    Canny(image, cannyEdges, 15, 10 );
 
     // STEP 2: get all the lines from the canny edge image
     // void HoughLinesP(InputArray image, OutputArray lines, double rho, double theta, 
@@ -46,12 +46,12 @@ int main( int argc, char** argv )
     for( size_t i = 0; i < lines.size(); i++ )
     {
 
-        line(image_dst, 
+        line( image_dst, 
             Point(lines[i][0], lines[i][1]),
             Point(lines[i][2], lines[i][3]), 
             Scalar(0,255,0), 
             2,
-            CV_AA);
+            CV_AA );
     }
 
     //-----------------------------------------------------------------------------------
@@ -60,20 +60,20 @@ int main( int argc, char** argv )
     string windowName1 = "Original image";
     namedWindow( windowName1, WINDOW_AUTOSIZE );
     imshow( windowName1, image );
-    moveWindow( windowName1, 0, 0);
+    moveWindow( windowName1, 0, 0 );
 
     // show the canny edges
     string windowName2 = "Canny edges";
     namedWindow( windowName2, WINDOW_AUTOSIZE );
     imshow( windowName2, cannyEdges );
-    moveWindow( windowName2, image.size().width, 0);
+    moveWindow( windowName2, image.size().width, 0 );
 
     // show the original image
     string windowName3 = "Result";
     namedWindow( windowName3, WINDOW_AUTOSIZE );
     imshow( windowName3, image_dst );
     moveWindow( windowName3, 
-        image.size().width + cannyEdges.size().width, 0);
+        image.size().width + cannyEdges.size().width, 0 );
 
     //-----------------------------------------------------------------------------------
 

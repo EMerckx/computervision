@@ -54,3 +54,8 @@ echo " "
 echo "Exercise 11"
 echo "-----------"
 ./dist/ex_11.out ./img/rays.png
+
+echo " "
+echo "Exercise 12"
+echo "-----------"
+./dist/ex_12.out ./img/shot1.png ./img/shot2.png

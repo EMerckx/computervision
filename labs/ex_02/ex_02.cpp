@@ -1,6 +1,6 @@
+#include <iostream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
-#include <iostream>
 #include <opencv2/imgproc/imgproc.hpp>
 
 using namespace cv;
@@ -12,20 +12,22 @@ int main( int argc, char** argv )
 {
     if( argc != 2)
     {
-     cout <<" Usage: display_image ImageToLoadAndDisplay" << endl;
+     cout << "Usage: ex_02.out image" << endl;
      return -1;
     }
 
     // read the image
     Mat image;
-    image = imread(argv[1], CV_LOAD_IMAGE_COLOR); 
+    image = imread( argv[1], CV_LOAD_IMAGE_COLOR ); 
 
     // check for errors
     if(! image.data )
     {
-        cout <<  "Could not open or find the image" << std::endl ;
+        cout <<  "Could not open or find the image" << endl;
         return -1;
     }
+
+    //-----------------------------------------------------------------------------------
 
     // apply the gausian blur
     Mat image_gauss;
@@ -33,18 +35,22 @@ int main( int argc, char** argv )
         GaussianBlur( image, image_gauss, Size( i, i ), 0, 0 );
     }
 
+    //-----------------------------------------------------------------------------------
+
     // show the original image
     string windowName1 = "Original image";
     namedWindow( windowName1, WINDOW_AUTOSIZE );    // Create a window for display.
     imshow( windowName1, image );                   // Show our image inside it.
-    moveWindow( windowName1, 0, 0);                 // Move our window
+    moveWindow( windowName1, 0, 0 );                 // Move our window
 
     // show the blurred image
     string windowName2 = "Gaussian blurred image";
     namedWindow( windowName2, WINDOW_AUTOSIZE );
     imshow( windowName2, image_gauss );
-    moveWindow( windowName2, image.size().width, 0);
+    moveWindow( windowName2, image.size().width, 0 );
 
-    waitKey(0);                                          // Wait for a keystroke in the window
+    //-----------------------------------------------------------------------------------
+
+    waitKey(0);
     return 0;
 }

@@ -1,6 +1,6 @@
+#include <iostream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
-#include <iostream>
 #include <opencv2/imgproc/imgproc.hpp>
 
 using namespace cv;
@@ -8,20 +8,20 @@ using namespace std;
 
 int main( int argc, char** argv )
 {
-    if( argc != 2)
+    if( argc != 2 )
     {
-     cout <<" Usage: display_image ImageToLoadAndDisplay" << endl;
+     cout << "Usage: ex_08.out image" << endl;
      return -1;
     }
 
     // read the image
     Mat image;
-    image = imread(argv[1], CV_LOAD_IMAGE_COLOR); 
+    image = imread( argv[1], CV_LOAD_IMAGE_COLOR ); 
 
     // check for errors
     if(! image.data )
     {
-        cout <<  "Could not open or find the image" << std::endl ;
+        cout <<  "Could not open or find the image" << endl;
         return -1;
     }
 
@@ -31,9 +31,9 @@ int main( int argc, char** argv )
     Mat matrix;
     int rows = 2;
     int cols = 3;
-    matrix = Mat::zeros(rows, cols, CV_64F);
+    matrix = Mat::zeros( rows, cols, CV_64F );
     
-    for(int i=0; i<rows; i++){
+    for( int i=0; i<rows; i++ ){
         matrix.Mat::at<double>(i,i) = 1;
     }
 
@@ -50,13 +50,13 @@ int main( int argc, char** argv )
     string windowName1 = "Original image";
     namedWindow( windowName1, WINDOW_AUTOSIZE );
     imshow( windowName1, image );
-    moveWindow( windowName1, 0, 0);
+    moveWindow( windowName1, 0, 0 );
 
     // show the warp affine image
     string windowName2 = "Warp affine image";
     namedWindow( windowName2, WINDOW_AUTOSIZE );
     imshow( windowName2, image_affine );
-    moveWindow( windowName2, image.size().width, 0);
+    moveWindow( windowName2, image.size().width, 0 );
 
     //-----------------------------------------------------------------------------------
 
