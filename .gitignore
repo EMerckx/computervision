@@ -31,3 +31,7 @@
 build/
 dist/
 old/
+
+# output images
+1_gray_image.png
+1_tres_image.png
